@@ -15,10 +15,6 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!postcss-loader'
       },
       {
-        test: /\.sass/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-      },
-      {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
       },
@@ -29,6 +25,10 @@ function getDefaultModules() {
       {
         test: /\.styl/,
         loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
@@ -47,6 +47,10 @@ module.exports = {
   port: dfltPort,
   getDefaultModules: getDefaultModules,
   postcss: function () {
-    return [];
+    return [
+      require('autoprefixer')({
+        browsers: ['last 2 versions']
+      })
+    ];
   }
 };
