@@ -1,3 +1,4 @@
 # react-study
 Study React &ReactNative
-# 学习使用项目
+###React 注意事项：
+1、不要在state中保存计算出来的值，而应该保存最简单的数据，即那些组件能正常工作时的必要数据，不要尝试把props复制到state中，要尽可能把props当作数据源。
