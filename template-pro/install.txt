@@ -1,0 +1,2 @@
+npm install --save consolidate ejs express
+npm install --save-dev browser-sync chokidar cross-env css-loader extract-text-webpack-plugin file-loader node-sass npm-install-webpack-plugin reload resolve-url-loader sass-loader style-loader url-loader webpack webpack-dev-middleware webpack-hot-middleware

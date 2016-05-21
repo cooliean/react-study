@@ -1,0 +1,20 @@
+{
+  "name": "template-pro",
+  "version": "1.0.0",
+  "description": "template project",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=dev supervisor -i client app",
+    "browsersync": "cross-env NODE_ENV=dev node app_browsersync",
+    "full": "cross-env NODE_ENV=dev node app_browsersync",
+    "build": "webpack",
+    "production": "webpack --config webpack.production.config.js -p & cross-env NODE_ENV=production node app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consolidate": "^0.14.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  }
+}
