@@ -6,12 +6,13 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
     entry: {
-        page1: ['./client', hotMiddlewareScript]
+        page1: ['./client/index.js', hotMiddlewareScript],
+        page1: ['./client/index2.js', hotMiddlewareScript]
     },
     output: {
         filename: './[name]/bundle.js',
-        path: path.resolve('./public'),
-        publicPath: publicPath
+        path: path.resolve('./public'),//这个是打包压缩后的路径
+        publicPath: publicPath////这个运行调试的地址
     },
     devtool: 'eval-source-map',
     module: {

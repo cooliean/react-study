@@ -8,12 +8,12 @@ import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 
 
-class App extends Component {
+class Index2 extends Component {
     render() {
         return (
-            <div>cooliean</div>
+            <div>I am Index2. AweSome</div>
         );
     }
 }
 
-ReactDom.render(<App />, document.getElementById("app"));
+ReactDom.render(<Index2 />, document.getElementById("app"));
