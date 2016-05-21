@@ -30,7 +30,7 @@ if (isDev) {
     }));
     app.use(webpackHotMiddleware(compiler));
 
-    require('./server/routes')(app);
+    require('./server/routes/index')(app);
 
     // browsersync is a nice choice when modifying only views (with their css & js)
     var bs = require('browser-sync').create();

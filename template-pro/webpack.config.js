@@ -20,6 +20,9 @@ var devConfig = {
             test: /\.(png|jpg)$/,
             loader: 'url?limit=8192&context=client&name=[path][name].[ext]'
         }, {
+            test: /\.(js|jsx)$/,
+            loader: 'babel-loader'
+        }, {
             test: /\.scss$/,
             loader: 'style!css?sourceMap!resolve-url!sass?sourceMap'
         }]
