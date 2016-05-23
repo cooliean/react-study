@@ -6,8 +6,12 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
     entry: {
-        page1: ['./client/index.js', hotMiddlewareScript],
-        page1: ['./client/index2.js', hotMiddlewareScript]
+        client: ['./client/index.js', hotMiddlewareScript],
+        vendor: [
+            'react',
+            'react-dom',
+            hotMiddlewareScript,
+        ],
     },
     output: {
         filename: './[name]/bundle.js',
@@ -32,6 +36,7 @@ var devConfig = {
         ]
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'common.js'),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()

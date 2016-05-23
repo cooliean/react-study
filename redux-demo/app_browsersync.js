@@ -14,6 +14,7 @@ app.locals.env = process.env.NODE_ENV || 'dev';
 app.locals.reload = false;
 
 if (isDev) {
+    //增加模块热替换的方法如下
     var webpack = require('webpack'),
         webpackDevMiddleware = require('webpack-dev-middleware'),
         webpackHotMiddleware = require('webpack-hot-middleware'),
@@ -30,11 +31,11 @@ if (isDev) {
     }));
     app.use(webpackHotMiddleware(compiler));
 
-    require('./server/routes/index')(app);
+    require('./server/routes')(app);
 
     // browsersync is a nice choice when modifying only views (with their css & js)
     var bs = require('browser-sync').create();
-    app.listen(port, function(){
+    const server = app.listen(port, ()=>{
         bs.init({
             open: false,
             ui: false,
@@ -43,7 +44,8 @@ if (isDev) {
             files: ['./server/views/**'],
             port: 8080
         });
-        console.log('App (dev) is going to be running on port 8080 (by browsersync).');
+        //const {port} = server.address();
+        console.log(`App (dev) is going to be running on port 8080 (by browsersync).`);
     });
 
 } else {

@@ -1,12 +1,13 @@
-var express = require('express'),
-    router = express.Router();
-
-module.exports = function (app) {
-    app.use('/', router.get('/', function(req, res) {
-        res.render('./');//这里的page1 是目录啊
-    }));
-    app.use('/index2', router.get('/index2', function(req, res) {
-        res.render('./index2.html');//这里的page1 是目录啊
-    }));
-    //app.use('/page2', require('./page2'));
+var path = require("path");
+module.exports = (app) => {
+    // app.use('/', router.get('/', function(req, res) {
+    //     res.render('./index.html');//这里的page1 是目录啊
+    // }));
+    app.get('/', (req, res) => {
+        res.render('./index.html');//这里的page1 是目录啊
+    });
+    app.get('/cooliean', (req, res) => {
+        res.sendFile(path.join(__dirname, '../views/cooliean.html'));
+        //res.render('./cooliean.html');//这里的page1 是目录啊
+    });
 };

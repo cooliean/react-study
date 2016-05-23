@@ -3,7 +3,7 @@ var path = require('path');
 
 var productionConfig = [{
     entry: {
-        page1: ['./client/index.js','./client/index2.js'],
+        page1: ['./client/index.js'],
         //page2: './client/page2'
     },
     output: {

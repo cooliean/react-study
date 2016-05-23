@@ -5,8 +5,12 @@
     <title>index</title>
 </head>
 <body>
-<div id="app">Error</div>
-<div id="app1">这个环境总算是好了,奶奶的</div>
-<script src="/page1/bundle.js"></script>
+<div id="app">IF YOU SEE THIS ,SOME ERROR IS APPEND</div>
+<div id="app1">IF YOU SEE THIS ,SOME ERROR IS APPEND</div>
+<script src="/common.js"></script>
+<script src="/client/bundle.js"></script>
+<% if (env !== "production" && reload === true) { %>
+<script src="/reload/reload.js"></script>
+<% } %>
 </body>
 </html>
