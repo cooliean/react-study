@@ -6,12 +6,11 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
     entry: {
-        page1: ['./client/page1', hotMiddlewareScript],
-        page2: ['./client/page2', hotMiddlewareScript]
+        static: ['./client/index.js', hotMiddlewareScript],
     },
     output: {
         filename: './[name]/bundle.js',
-        path: path.resolve('./public'),
+        path: path.resolve('./static'),
         publicPath: publicPath
     },
     devtool: 'eval-source-map',
@@ -30,6 +29,13 @@ var devConfig = {
         }]
     },
     plugins: [
+        // Global modules
+        // http://webpack.github.io/docs/shimming-modules.html
+        //这里将很多要require的可以放在这里直接用
+        new webpack.ProvidePlugin({
+            React: 'react',
+            ReactDOM:"react-dom",
+        }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()

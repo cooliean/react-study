@@ -1,45 +1,41 @@
-/**
- *
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {renderToString} from 'react-dom/server';
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
+import {Provider,connect} from 'react-redux';
 import Reducers from './reducers';
 import ActionTypes from "./constants/action_type";
-import Temp from './temp';
-import {combineReducers} from 'redux';
+import Counter from './counter/Counter';
 
-import * as Increment from './reducers/increment';
-import * as Decrement from './reducers/decrement';
+// import {increment} from '../actionsCreators';
 
+// Which part of the Redux global state does our component want to receive as props?
+function mapStateToProps(state) {
+    return {
+        value: state.counter
+    };
+}
 
-const todoAppReducer = combineReducers({
-    increment: Increment,
-    decrement: Decrement
-});
+// Which action creators does it want to receive by props?
+function mapDispatchToProps(dispatch) {
+    return {
+        onIncrement: () => dispatch(Reducers())
+    };
+}
+let store = createStore(Reducers);
 
-
-let store = createStore(todoAppReducer);
-
-
-store.subscribe(()=> {
-    console.info(`init state ${store.getState()}`);
-});
-
-
-store.dispatch({type: ActionTypes.DECREMENT});
+export default connect(   // Line 20
+    mapStateToProps,
+    mapDispatchToProps
+)(Counter);
 
 
 class App extends React.Component {
+
     render() {
+        console.info(this.props);
+        console.info(this.state);
         return (
-            <div className="index">
-                {renderToString(<Temp />)}
-            </div>
+            <Provider store={store}>
+                <Counter />
+            </Provider>
         );
     }
 }

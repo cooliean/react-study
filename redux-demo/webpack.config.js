@@ -4,10 +4,15 @@ var path = require('path');
 var publicPath = 'http://localhost:3000/';
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
+/*
+ entry: {
+ 'common':['react', 'react-dom',path.join(__dirname, config.base + '/js/util/common')]
+ },
+ */
 var devConfig = {
     entry: {
         client: ['./client/index.js', hotMiddlewareScript],
-        vendor: [
+        common: [
             'react',
             'react-dom',
             hotMiddlewareScript,
@@ -27,7 +32,9 @@ var devConfig = {
             },
             {
                 test: /\.(js|jsx)$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                include: __dirname
             }
             , {
                 test: /\.scss$/,
@@ -36,7 +43,14 @@ var devConfig = {
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'common.js'),
+        // Global modules
+        // http://webpack.github.io/docs/shimming-modules.html
+        //这里将很多要require的可以放在这里直接用
+        new webpack.ProvidePlugin({
+            React: 'react',
+            ReactDOM:"react-dom",
+        }),
+        new webpack.optimize.CommonsChunkPlugin('common', 'common/common.js'),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
