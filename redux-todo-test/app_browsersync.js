@@ -4,7 +4,8 @@ var express = require('express'),
 
 var isDev = process.env.NODE_ENV !== 'production';
 var app = express();
-var port = 3000;
+var proxyPort = 3002;
+var bsPort = 8080;
 
 app.engine('html', consolidate.ejs);
 app.set('view engine', 'html');
@@ -34,23 +35,23 @@ if (isDev) {
 
     // browsersync is a nice choice when modifying only views (with their css & js)
     var bs = require('browser-sync').create();
-    app.listen(port, function(){
+    app.listen(proxyPort, function () {
         bs.init({
             open: false,
             ui: false,
             notify: false,
-            proxy: 'localhost:'+port,
+            proxy: 'localhost:' + proxyPort,
             files: ['./server/views/**'],
-            port: 8080
+            port: bsPort
         });
-        console.log('App (dev) is going to be running on port 8080 (by browsersync).');
+        console.log('App (dev) is going to be running on proxyPort ' + bsPort + ' (by browsersync).');
     });
 
 } else {
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app);
-    app.listen(port, function () {
-        console.log('App (production) is now running on port '+port+'!');
-        
+    app.listen(proxyPort, function () {
+        console.log('App (production) is now running on proxyPort ' + proxyPort + '!');
+
     });
 }
