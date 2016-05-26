@@ -44,14 +44,14 @@ if (isDev) {
             files: ['./server/views/**'],
             port: bsPort
         });
-        console.log('App (dev) is going to be running on proxyPort ' + bsPort + ' (by browsersync).');
+        console.log('🌎  App (dev) is going to be running on proxyPort ' + bsPort + ' (by browsersync).');
     });
 
 } else {
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app);
     app.listen(proxyPort, function () {
-        console.log('App (production) is now running on proxyPort ' + proxyPort + '!');
+        console.log('🌎  App (production) is now running on proxyPort ' + proxyPort + '!');
 
     });
 }

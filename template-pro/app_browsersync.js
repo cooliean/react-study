@@ -43,13 +43,13 @@ if (isDev) {
             files: ['./server/views/**'],
             port: 8080
         });
-        console.log('App (dev) is going to be running on port 8080 (by browsersync).');
+        console.log('🌎  App (dev) is going to be running on port 8080 (by browsersync).');
     });
 
 } else {
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app);
     app.listen(port, function () {
-        console.log('App (production) is now running on port 3000!');
+        console.log('🌎  App (production) is now running on port 3000!');
     });
 }

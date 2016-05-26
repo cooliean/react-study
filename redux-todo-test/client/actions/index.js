@@ -6,7 +6,7 @@
 /*
  * action 类型
  */
-export const ActionTypes = {
+export const CLActionTypes = {
     ADD_TODO: 'ADD_TODO',
     SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
     TOGGLE_TODO: 'TOGGLE_TODO',
@@ -24,22 +24,24 @@ export const VisibilityFilters = {
  2、设置Todo开关的Action
  3、add TodoAction
  */
+let nextTodoId = 0
 export const addTodo = (text) => {
     return ({
-        type: ActionTypes.ADD_TODO,
+        type: CLActionTypes.ADD_TODO,
+        id : nextTodoId++,
         text
     })
 }
 export const setVisibilityFilter = (filter) => {
     return {
-        type: ActionTypes.SET_VISIBILITY_FILTER,
+        type: CLActionTypes.SET_VISIBILITY_FILTER,
         filter
     }
 }
 
 export const toggleTodo = (id) => {
     return {
-        type: ActionTypes.TOGGLE_TODO,
+        type: CLActionTypes.TOGGLE_TODO,
         id
     }
 }
